@@ -7,9 +7,9 @@
     <view class="friends">
         <view class="face" wx:for="{{zanLog}}" wx:key="user">
             <view class="avator">
-                <image src="{{item.face}}" />
+                <image src="{{item.avatarUrl}}" />
             </view>
-            <text>{{item.nickname}}</text>
+            <text>{{item.nickName}}</text>
         </view>
     </view>
 

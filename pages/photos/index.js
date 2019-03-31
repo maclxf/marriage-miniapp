@@ -17,10 +17,10 @@ Page({
             icon: 'loading',
         });
         wx.request({
-            url: server,
+            url: server + "/album",
             method: 'GET',
             data: {
-                'c': 'info',
+                'uid': 1,
                 'appid': appid
             },
             header: {
@@ -30,7 +30,7 @@ Page({
 
                 wx.hideLoading();
                 that.setData({
-                    slideList: res.data.slideList
+                    slideList: res.data
                 });
             }
         })

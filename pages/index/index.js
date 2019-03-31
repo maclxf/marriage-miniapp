@@ -47,28 +47,24 @@ Page({
             icon: 'loading',
         });
         wx.request({
-            url: server,
+            url: server + "/info?uid=1",
             method: 'GET',
-            data: {
-                'c': 'info',
-                'appid': appid
-            },
             header: {
                 'Accept': 'application/json'
             },
             success: function(res) {
-                //console.log(res.data)
+                // console.log(res.data)
                 wx.hideLoading();
-                wx.playBackgroundAudio({
-                    dataUrl: res.data.music_url,
-                    title: '',
-                    coverImgUrl: ''
-                })
+                // wx.playBackgroundAudio({
+                //     dataUrl: res.data.music_url,
+                //     title: '',
+                //     coverImgUrl: ''
+                // })
 
 
                 that.setData({
-                    mainInfo: res.data.mainInfo,
-                    music_url: res.data.music_url
+                    mainInfo: res.data,
+                    music_url: res.data.music
                 });
             }
         })

@@ -1,7 +1,7 @@
 // pages/bless/index.js
 
 const app = getApp()
-var server = app.globalData.server;
+var server = app.globalData.server + "/bless";
 var appid = app.globalData.appid;
 Page({
 
@@ -40,7 +40,7 @@ Page({
             url: server,
             method: 'GET',
             data: {
-                'c': 'info',
+                'uid': 1,
                 'appid': appid
             },
             header: {
@@ -50,10 +50,10 @@ Page({
                 wx.hideLoading();
                 // console.log(res.data)
                 that.setData({
-                    mainInfo: res.data.mainInfo,
-                    zanLog: res.data.zanLog,
-                    zanNum: res.data.zanNum,
-                    slideList: res.data.slideList
+                    // mainInfo: res.data.mainInfo,
+                    zanLog: res.data,
+                    zanNum: res.data.length,
+                    // slideList: res.data.slideList
                 });
             }
         })
@@ -122,8 +122,8 @@ Page({
             success: function(res) {
                 // console.log(res.data)
                 that.setData({
-                    zanLog: res.data.zanLog,
-                    zanNum: res.data.zanNum
+                  zanLog: res.data,
+                  zanNum: res.data.length,
                 });
             }
         })
@@ -142,8 +142,8 @@ Page({
         var that = this;
         //console.log(that.data);
         return {
-            title: that.data.mainInfo.share,
-            imageUrl: that.data.mainInfo.thumb,
+            title: "分享给好友吧",
+            imageUrl: "",
             path: 'pages/index/index',
             success: function(res) {
                 wx.showToast({
@@ -174,21 +174,24 @@ Page({
             wx.request({
                 url: server,
                 data: {
-                    'c': 'zan',
-                    'appid': appid,
-                    'nickname': name,
-                    'face': face
+                    'uid': 1,
+                    'nickName': userInfo.nickName,
+                    'gender': userInfo.gender,
+                    'language': userInfo.language,
+                    'city': userInfo.city,
+                    'province': userInfo.province,
+                    'country': userInfo.country,
+                    'avatarUrl': userInfo.avatarUrl,
                 },
                 header: {},
-                method: "GET",
+                method: "POST",
                 dataType: "json",
                 success: res => {
-                    // console.log(res.data);
+                    console.log(res.data);
                     if (res.data.success) {
-
                         that.setData({
-                            zanLog: res.data.zanLog,
-                            zanNum: res.data.zanNum
+                            zanLog: res.data.obj,
+                            zanNum: res.data.obj.length,
                         });
                         wx.showModal({
                             title: '提示',
@@ -214,31 +217,38 @@ Page({
         }
     },
 
+    // 送上祝福
     zan: function(event) {
         console.log(1, event)
         var that = this;
 
         var userInfo = that.data.userInfo;
+        console.log(userInfo)
         var name = userInfo.nickName;
         var face = userInfo.avatarUrl;
+        var language = userInfo.language;
+        var city = userInfo.city;
         wx.request({
             url: server,
-            data: {
-                'c': 'zan',
-                'appid': appid,
-                'nickname': name,
-                'face': face
-            },
+          data: {
+            'uid': 1,
+            'nickName': userInfo.nickName,
+            'gender': userInfo.gender,
+            'language': userInfo.language,
+            'city': userInfo.city,
+            'province': userInfo.province,
+            'country': userInfo.country,
+            'avatarUrl': userInfo.avatarUrl,
+          },
             header: {},
-            method: "GET",
+            method: "POST",
             dataType: "json",
             success: res => {
                 // console.log(res.data);
                 if (res.data.success) {
-
                     that.setData({
-                        zanLog: res.data.zanLog,
-                        zanNum: res.data.zanNum
+                        zanLog: res.data.obj,
+                        zanNum: res.data.obj.length,
                     });
                     wx.showModal({
                         title: '提示',

@@ -1,5 +1,5 @@
 const app = getApp()
-var server = app.globalData.server;
+var server = app.globalData.server + "/info";
 var appid = app.globalData.appid;
 Page({
 
@@ -31,13 +31,17 @@ Page({
         wx.request({
             url: server,
             method: 'GET',
-            data: { 'c': 'info', 'appid': appid },
+            data: { 
+              'uid': 1,
+              // 'c': 'info',
+             'appid': appid 
+             },
             header: {
                 'Accept': 'application/json'
             },
             success: function (res) {
                 that.setData({
-                    mainInfo: res.data.mainInfo
+                    mainInfo: res.data
                 });
                 that.eventDraw()
             }
@@ -60,7 +64,6 @@ Page({
                 height: 667,
                 clear: true,
                 views: [
-                    
                     {
                         type: 'image',
                         url: '/images/poster.jpg',

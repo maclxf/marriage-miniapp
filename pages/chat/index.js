@@ -33,10 +33,10 @@ Page({
 			icon: 'loading',
 		});
         wx.request({
-            url: server,
+            url: server + "/comment",
             method: 'GET',
             data: {
-                'c': 'info',
+                'uid': 1,
                 'appid': appid
             },
             header: {
@@ -46,9 +46,9 @@ Page({
 				wx.hideLoading();
                 console.log(res.data)
                 that.setData({
-                    mainInfo: res.data.mainInfo,
-                    chatList: res.data.chatList,
-                    chatNum: res.data.chatNum
+                    // mainInfo: res.data.mainInfo,
+                    chatList: res.data,
+                    chatNum: res.data.length,
                 });
             }
         })
@@ -106,8 +106,9 @@ Page({
         var plan = event.detail.value.plan;
         var extra = event.detail.value.extra;
         wx.request({
-            url: server,
+            url: server + "/submit",
             data: {
+                'uid': 1,
                 'c': 'sign',
                 'appid': appid,
                 'nickname': nickname,
@@ -118,7 +119,7 @@ Page({
                 'extra': extra
             },
             header: {},
-            method: "GET",
+            method: "POST",
             dataType: "json",
             success: res => {
                 // console.log(res.data);
@@ -200,29 +201,31 @@ Page({
             var face = userInfo.avatarUrl;
             var words = that.data.inputValue;
             wx.request({
-                url: server,
+                url: server + "/comment",
                 data: {
-                    'c': 'send',
+                    // 'c': 'send',
+                    'uid': 1,
                     'appid': appid,
                     'nickname': name,
                     'face': face,
                     'words': words
                 },
                 header: {},
-                method: "GET",
+                method: "POST",
                 dataType: "json",
                 success: res => {
                     // console.log(res.data);
                     if (res.data.success) {
                         that.setData({
-                            chatList: res.data.chatList,
-                            chatNum: res.data.chatNum
+                            chatList: res.data.obj,
+                            chatNum: res.data.obj.length
                         });
                         wx.showModal({
                             title: '提示',
                             content: res.data.msg,
                             showCancel: false
                         })
+                        this.cancelMsg
                     } else {
                         wx.showModal({
                             title: '提示',

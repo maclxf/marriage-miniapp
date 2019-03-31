@@ -29,7 +29,7 @@ App({
     globalData: {
         userInfo: null,
 		appid: 'wxade372ce7f2da061',//此处改成您自己的小程序appid
-        server: 'https://wx.qiaker.cn/api',
+        server: 'http://localhost:8080/wx',
         music_url: ''
     }
 });

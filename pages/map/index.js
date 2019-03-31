@@ -14,25 +14,25 @@ Page({
     markertap(e) {
         // console.log(e)
         wx.request({
-            url: server,
+            url: server + "/map",
             method: 'GET',
             data: {
-                'c': 'info',
+                'uid': 1,
                 'appid': appid
             },
             header: {
                 'Accept': 'application/json'
             },
             success: function(res) {
-                var lng = res.data.mainInfo.lng
-                var lat = res.data.mainInfo.lat
+                var lng = res.data.location.lng
+                var lat = res.data.location.lat
                 console.log(lat)
                 wx.openLocation({
                     latitude: parseFloat(lat),
                     longitude: parseFloat(lng),
                     scale: 18,
-                    name: res.data.mainInfo.hotel,
-                    address: res.data.mainInfo.address
+                  name: res.data.mainInfo.hotel,
+                  address: res.data.mainInfo.address
                 })
             }
         })
@@ -49,20 +49,20 @@ Page({
             icon: 'loading',
         });
         wx.request({
-            url: server,
-            method: 'GET',
-            data: {
-                'c': 'info',
-                'appid': appid
-            },
+          url: server + "/map",
+          method: 'GET',
+          data: {
+            'uid': 1,
+            'appid': appid
+          },
             header: {
                 'Accept': 'application/json'
             },
             success: function(res) {
                 // console.log(res.data)
                 wx.hideLoading();
-                var lng = res.data.mainInfo.lng
-                var lat = res.data.mainInfo.lat
+                var lng = res.data.location.lon
+                var lat = res.data.location.lat
                 that.setData({
                     mainInfo: res.data.mainInfo,
                     lng: lng, // 全局属性，用来取定位坐标
