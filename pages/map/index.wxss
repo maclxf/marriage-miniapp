@@ -12,14 +12,13 @@
   display: block;
 }
 
-
 #map {
   width: 694rpx;
   height: 600rpx;
   margin: 0 auto;
   margin-bottom: 30rpx;
   margin-top: 20rpx;
-  border: 3rpx solid rgba(0, 0, 0, .3)
+  border: 3rpx solid rgba(0, 0, 0, 0.3);
 }
 
 .tel {

@@ -1,5 +1,5 @@
 // pages/map/index.js
-
+let plugin = requirePlugin("myPlugin");
 const app = getApp();
 const uid = app.globalData.uid;
 var server = app.globalData.server + "/map";
@@ -27,14 +27,16 @@ Page({
       success: function(res) {
         var lng = res.data.location.lng
         var lat = res.data.location.lat
-        console.log(lat)
         wx.openLocation({
           latitude: parseFloat(lat),
           longitude: parseFloat(lng),
           scale: 18,
           name: res.data.mainInfo.hotel,
-          address: res.data.mainInfo.address
-        })
+          address: res.data.mainInfo.address,
+          success(res) {
+            console.log(res)
+          }
+        }, )
       }
     })
   },

@@ -4,8 +4,10 @@ Component({
   properties: {
     painting: {
       type: Object,
-      value: {view: []},
-      observer (newVal, oldVal) {
+      value: {
+        view: []
+      },
+      observer(newVal, oldVal) {
         if (!this.data.isPainting) {
           if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
             if (newVal && newVal.width && newVal.height) {
@@ -17,7 +19,9 @@ Component({
             }
           } else {
             if (newVal && newVal.mode !== 'same') {
-              this.triggerEvent('getImage', {errMsg: 'canvasdrawer:samme params'})
+              this.triggerEvent('getImage', {
+                errMsg: 'canvasdrawer:samme params'
+              })
             }
           }
         }
@@ -38,14 +42,18 @@ Component({
   },
   ctx: null,
   cache: {},
-  ready () {
+  ready() {
     wx.removeStorageSync('canvasdrawer_pic_cache')
     this.cache = wx.getStorageSync('canvasdrawer_pic_cache') || {}
     this.ctx = wx.createCanvasContext('canvasdrawer', this)
   },
   methods: {
-    readyPigment () {
-      const { width, height, views } = this.data.painting
+    readyPigment() {
+      const {
+        width,
+        height,
+        views
+      } = this.data.painting
       this.setData({
         width,
         height
@@ -61,7 +69,7 @@ Component({
         }
       }, 100)
     },
-    getImageList (views) {
+    getImageList(views) {
       const imageList = []
       for (let i = 0; i < views.length; i++) {
         if (views[i].type === 'image') {
@@ -72,8 +80,11 @@ Component({
         imageList
       })
     },
-    downLoadImages (index) {
-      const { imageList, tempFileList } = this.data
+    downLoadImages(index) {
+      const {
+        imageList,
+        tempFileList
+      } = this.data
       if (index < imageList.length) {
         // console.log(imageList[index])
         this.getImageInfo(imageList[index]).then(file => {
@@ -87,8 +98,13 @@ Component({
         this.startPainting()
       }
     },
-    startPainting () {
-      const { tempFileList, painting: { views } } = this.data
+    startPainting() {
+      const {
+        tempFileList,
+        painting: {
+          views
+        }
+      } = this.data
       for (let i = 0, imageIndex = 0; i < views.length; i++) {
         if (views[i].type === 'image') {
           this.drawImage({
@@ -102,7 +118,9 @@ Component({
               title: '提示',
               content: '当前微信版本过低，无法使用 measureText 功能，请升级到最新微信版本后重试。'
             })
-            this.triggerEvent('getImage', {errMsg: 'canvasdrawer:version too low'})
+            this.triggerEvent('getImage', {
+              errMsg: 'canvasdrawer:version too low'
+            })
             return
           } else {
             this.drawText(views[i])
@@ -116,9 +134,16 @@ Component({
         this.saveImageToLocal()
       })
     },
-    drawImage (params) {
+    drawImage(params) {
       this.ctx.save()
-      const { url, top = 0, left = 0, width = 0, height = 0, borderRadius = 0 } = params
+      const {
+        url,
+        top = 0,
+        left = 0,
+        width = 0,
+        height = 0,
+        borderRadius = 0
+      } = params
       // if (borderRadius) {
       //   this.ctx.beginPath()
       //   this.ctx.arc(left + borderRadius, top + borderRadius, borderRadius, 0, 2 * Math.PI)
@@ -129,23 +154,23 @@ Component({
       // }
       this.ctx.restore()
     },
-    drawText (params) {
+    drawText(params) {
       this.ctx.save()
       const {
         MaxLineNumber = 2,
-        breakWord = false,
-        color = 'black',
-        content = '',
-        fontSize = 16,
-        top = 0,
-        left = 0,
-        lineHeight = 20,
-        textAlign = 'left',
-        width,
-        bolder = false,
-        textDecoration = 'none'
+          breakWord = false,
+          color = 'black',
+          content = '',
+          fontSize = 16,
+          top = 0,
+          left = 0,
+          lineHeight = 20,
+          textAlign = 'left',
+          width,
+          bolder = false,
+          textDecoration = 'none'
       } = params
-      
+
       this.ctx.beginPath()
       this.ctx.setTextBaseline('top')
       this.ctx.setTextAlign(textAlign)
@@ -175,13 +200,13 @@ Component({
             this.drawTextLine(left, fillTop, textDecoration, color, fontSize, fillText)
             fillText = ''
             fillTop += lineHeight
-            lineNum ++
+            lineNum++
           }
         }
         this.ctx.fillText(fillText, left, fillTop)
         this.drawTextLine(left, fillTop, textDecoration, color, fontSize, fillText)
       }
-      
+
       this.ctx.restore()
 
       if (bolder) {
@@ -190,11 +215,11 @@ Component({
           left: left + 0.3,
           top: top + 0.3,
           bolder: false,
-          textDecoration: 'none' 
+          textDecoration: 'none'
         })
       }
     },
-    drawTextLine (left, top, textDecoration, color, fontSize, content) {
+    drawTextLine(left, top, textDecoration, color, fontSize, content) {
       if (textDecoration === 'underline') {
         this.drawRect({
           background: color,
@@ -213,14 +238,20 @@ Component({
         })
       }
     },
-    drawRect (params) {
+    drawRect(params) {
       this.ctx.save()
-      const { background, top = 0, left = 0, width = 0, height = 0 } = params
+      const {
+        background,
+        top = 0,
+        left = 0,
+        width = 0,
+        height = 0
+      } = params
       this.ctx.setFillStyle(background)
       this.ctx.fillRect(left, top, width, height)
       this.ctx.restore()
     },
-    getImageInfo (url) {
+    getImageInfo(url) {
       return new Promise((resolve, reject) => {
         if (this.cache[url]) {
           resolve(this.cache[url])
@@ -234,7 +265,9 @@ Component({
                   this.cache[url] = res.path
                   resolve(res.path)
                 } else {
-                  this.triggerEvent('getImage', {errMsg: 'canvasdrawer:download fail'})
+                  this.triggerEvent('getImage', {
+                    errMsg: 'canvasdrawer:download fail'
+                  })
                   reject(new Error('getImageInfo fail'))
                 }
               }
@@ -246,8 +279,11 @@ Component({
         }
       })
     },
-    saveImageToLocal () {
-      const { width, height } = this.data
+    saveImageToLocal() {
+      const {
+        width,
+        height
+      } = this.data
       wx.canvasToTempFilePath({
         x: 0,
         y: 0,
@@ -262,9 +298,14 @@ Component({
               imageList: [],
               tempFileList: []
             })
-            this.triggerEvent('getImage', {tempFilePath: res.tempFilePath, errMsg: 'canvasdrawer:ok'})
+            this.triggerEvent('getImage', {
+              tempFilePath: res.tempFilePath,
+              errMsg: 'canvasdrawer:ok'
+            })
           } else {
-            this.triggerEvent('getImage', {errMsg: 'canvasdrawer:fail'})
+            this.triggerEvent('getImage', {
+              errMsg: 'canvasdrawer:fail'
+            })
           }
         }
       }, this)

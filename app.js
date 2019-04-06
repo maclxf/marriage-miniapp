@@ -28,7 +28,13 @@ App({
   },
   globalData: {
     userInfo: null,
-    appid: 'wxade372ce7f2dxxxx', //此处改成您自己的小程序appid
+
+    // 下面填写酒店相关信息
+    lat: 30.0000,
+    lon: 120.000000,
+    addressName: "希尔顿大酒店",
+
+    appid: 'wx349xxxxxxx', //此处改成您自己的小程序appid
     uid: 1,
     server: 'http://localhost:8080/wx',
     music_url: ''
