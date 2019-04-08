@@ -39,7 +39,6 @@ Page({
         method: 'GET',
         data: {
           'uid': 1,
-          // 'c': 'info',
           'appid': appid
         },
         header: {
@@ -63,14 +62,15 @@ Page({
     })
     var that = this
     // let avatar = that.data.userInfo.avatarUrl
-    // let nickName = that.data.userInfo.nickName
+    let nickName = that.data.userInfo.nickName
     // console.log(that.data.mainInfo)
     that.setData({
       painting: {
         width: 375,
         height: 667,
         clear: true,
-        views: [{
+        views: [
+          {
             type: 'image',
             url: '/images/poster.jpg',
             top: 0,
@@ -80,12 +80,26 @@ Page({
           },
           {
             type: 'text',
-            content: that.data.mainInfo.he + ' ❤️ ' + that.data.mainInfo.she,
+            content: nickName + ':',
             fontSize: 20,
+            color: '#B08B51',
+            // color: '#aa2f2f',
+            textAlign: 'left',
+            top: 340,
+            left: 80,
+            bolder: true,
+            width: 200,
+            height: 30
+          },
+          {
+            type: 'text',
+            content: that.data.mainInfo.he + '❤️ ' + that.data.mainInfo.she,
+            // content: that.data.mainInfo.date,
+            fontSize: 12,
             color: '#B08B51',
             textAlign: 'center',
             top: 400,
-            left: 180,
+            left: 220,
             bolder: true,
             width: 375,
             height: 30
@@ -117,7 +131,7 @@ Page({
             top: 180,
             left: 75,
             width: 220,
-            height: 176
+            height: 150
           }
         ]
       }
