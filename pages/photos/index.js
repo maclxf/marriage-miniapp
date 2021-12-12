@@ -1,9 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp();
-const uid = app.globalData.uid;
+// const uid = app.globalData.uid;
 var server = app.globalData.server + "/album";
-var appid = app.globalData.appid;
+// var appid = app.globalData.appid;
 var mainData;
 
 Page({
@@ -14,7 +14,7 @@ Page({
   onLoad: function() {
     var that = this
 
-    wx.showLoading({ //期间为了显示效果可以添加一个过度的弹出框提示“加载中”  
+    wx.showLoading({ //期间为了显示效果可以添加一个过度的弹出框提示“加载中”
       title: '加载中',
       icon: 'loading',
     });
@@ -29,8 +29,8 @@ Page({
       url: server,
       method: 'GET',
       data: {
-        'uid': uid,
-        'appid': appid
+        // 'uid': uid,
+        // 'appid': appid
       },
       header: {
         'Accept': 'application/json'
@@ -82,7 +82,7 @@ Page({
     }
     var current = e.target.dataset.src;
     wx.previewImage({
-      current: current, // 当前显示图片的http链接  
+      current: current, // 当前显示图片的http链接
       urls: imgsurl // 需要预览的图片http链接列表
     })
   },

@@ -1,8 +1,8 @@
 // pages/chat/index.js
 const app = getApp();
-const uid = app.globalData.uid;
+//const uid = app.globalData.uid;
 var server = app.globalData.server + "/comment";
-var appid = app.globalData.appid;
+//var appid = app.globalData.appid;
 
 Page({
 
@@ -29,7 +29,7 @@ Page({
         userInfo: userInfo
       })
     }
-    wx.showLoading({ //期间为了显示效果可以添加一个过度的弹出框提示“加载中”  
+    wx.showLoading({ //期间为了显示效果可以添加一个过度的弹出框提示“加载中”
       title: '加载中',
       icon: 'loading',
     });
@@ -37,8 +37,8 @@ Page({
       url: server,
       method: 'GET',
       data: {
-        'uid': uid,
-        'appid': appid
+        // 'uid': uid,
+        // 'appid': appid
       },
       header: {
         'Accept': 'application/json'
@@ -109,8 +109,8 @@ Page({
     wx.request({
       url: server + "/submit",
       data: {
-        'uid': uid,
-        'appid': appid,
+        // 'uid': uid,
+        // 'appid': appid,
         'nickname': nickname,
         'face': face,
         'name': name,
@@ -203,8 +203,8 @@ Page({
       wx.request({
         url: server,
         data: {
-          'uid': uid,
-          'appid': appid,
+          // 'uid': uid,
+          // 'appid': appid,
           'nickname': name,
           'face': face,
           'words': words

@@ -1,18 +1,17 @@
 // pages/invitation/index.js
 const app = getApp()
-var server = app.globalData.server + "/info";
-var appid = app.globalData.appid;
-const uid = app.globalData.uid;
-var touchDot = 0; //触摸时的原点  
-var time = 0; // 时间记录，用于滑动时且时间小于1s则执行左右滑动 
-var interval = ""; // 记录/清理时间记录 
+var server = app.globalData.server + "/main";
+//var appid = app.globalData.appid;
+//const uid = app.globalData.uid;
+var touchDot = 0; //触摸时的原点
+var time = 0; // 时间记录，用于滑动时且时间小于1s则执行左右滑动
+var interval = ""; // 记录/清理时间记录
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    animationData: "",
     userInfo: {},
     music_url: '',
     isPlayingMusic: true
@@ -23,27 +22,9 @@ Page({
    */
   onLoad: function(options) {
 
-    //创建动画
-    var animation = wx.createAnimation({
-
-      duration: 3600,
-      timingFunction: "ease",
-      delay: 600,
-      transformOrigin: "50% 50%",
-
-    })
-
-
-    animation.scale(0.9).translate(10, 10).step(); //边旋转边放大
-
-
-    //导出动画数据传递给组件的animation属性。
-    this.setData({
-      animationData: animation.export(),
-    })
 
     var that = this
-    wx.showLoading({ //期间为了显示效果可以添加一个过度的弹出框提示“加载中”  
+    wx.showLoading({ //期间为了显示效果可以添加一个过度的弹出框提示“加载中”
       title: '加载中',
       icon: 'loading',
     });
@@ -51,8 +32,8 @@ Page({
       url: server,
       method: 'GET',
       data: {
-        'uid': uid,
-        'appid': appid
+        // 'uid': uid,
+        // 'appid': appid
       },
       header: {
         'Accept': 'application/json'
@@ -65,6 +46,8 @@ Page({
           title: '',
           coverImgUrl: ''
         })
+
+        // 生成海报需要
         wx.setStorage({
           key: 'main',
           data: res.data,
@@ -154,6 +137,7 @@ Page({
     })
   },
   play: function(event) {
+    console.log(event)
     if (this.data.isPlayingMusic) {
       wx.pauseBackgroundAudio();
       this.setData({
@@ -163,7 +147,10 @@ Page({
       wx.playBackgroundAudio({
         dataUrl: this.data.music_url,
         title: '',
-        coverImgUrl: ''
+        coverImgUrl: '',
+        success: function(e) {
+          console.log(e)
+        }
       })
       this.setData({
         isPlayingMusic: true

@@ -1,9 +1,16 @@
 // pages/map/index.js
-let plugin = requirePlugin("myPlugin");
+// let plugin = requirePlugin("myPlugin");
+//const chooseLocation = requirePlugin('chooseLocation');
+
 const app = getApp();
-const uid = app.globalData.uid;
-var server = app.globalData.server + "/map";
-var appid = app.globalData.appid;
+const lat = app.globalData.lat;
+const lng = app.globalData.lon;
+const name = app.globalData.name;
+const desc = app.globalData.desc;
+
+// const uid = app.globalData.uid;
+var server = app.globalData.server + "/main";
+// var appid = app.globalData.appid;
 Page({
 
   /**
@@ -11,34 +18,69 @@ Page({
    */
   data: {
     userInfo: {},
+    animationData: "",
+    lng: lng,
+    lat: lat,
+    markers: [{
+      latitude:lat,
+      longitude:lng,
+      // title: app.globalData.name,
+      // label: app.globalData.desc
+      callout: {
+        id:1,
+        bgColor: '#FFCCCC',
+        content:app.globalData.name,
+        color:'#684c4b',
+        display:"ALWAYS",
+        fontSize: 20,
+        padding:4,
+        borderRadius: 4,
+        borderColor:'#684c4b',
+        borderWidth:2
+      },
+      // label: {
+      //   content: app.globalData.desc
+      // }
+    }]
   },
   markertap(e) {
-    // console.log(e)
-    wx.request({
-      url: server,
-      method: 'GET',
-      data: {
-        'uid': uid,
-        'appid': appid
-      },
-      header: {
-        'Accept': 'application/json'
-      },
-      success: function(res) {
-        var lng = res.data.location.lng
-        var lat = res.data.location.lat
-        wx.openLocation({
-          latitude: parseFloat(lat),
-          longitude: parseFloat(lng),
-          scale: 18,
-          name: res.data.mainInfo.hotel,
-          address: res.data.mainInfo.address,
-          success(res) {
-            console.log(res)
-          }
-        }, )
+    console.log(e)
+    wx.openLocation({
+      latitude: parseFloat(lat),
+      longitude: parseFloat(lng),
+      scale: 18,
+      name: app.globalData.name,
+      address: app.globalData.desc,
+      success(res) {
+        console.log(res)
       }
-    })
+    }, )
+    // console.log(e)
+    // wx.request({
+    //   url: server,
+    //   method: 'GET',
+    //   data: {
+    //    'uid': uid,
+    //    'appid': appid
+    //   },
+    //   header: {
+    //     'Accept': 'application/json'
+    //   },
+    //   success: function(res) {
+    //     var lng = this.data.lng
+    //     var lat = this.data.lat
+    //     wx.openLocation({
+    //       latitude: parseFloat(lat),
+    //       longitude: parseFloat(lng),
+    //       scale: 18,
+    //       name: endName,
+    //       address: endName + 111,
+    //       success(res) {
+    //         console.log(res)
+    //       }
+    //     }, )
+    //   }
+    // })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -47,7 +89,28 @@ Page({
     var that = this
 
 
-    wx.showLoading({ //期间为了显示效果可以添加一个过度的弹出框提示“加载中”  
+
+    //创建动画
+    var animation = wx.createAnimation({
+
+      duration: 3600,
+      timingFunction: "ease",
+      delay: 600,
+      transformOrigin: "50% 50%",
+
+    })
+
+
+    animation.scale(0.9).translate(10, 10).step(); //边旋转边放大
+
+
+    //导出动画数据传递给组件的animation属性。
+    this.setData({
+      animationData: animation.export(),
+    })
+
+    var that = this
+    wx.showLoading({ //期间为了显示效果可以添加一个过度的弹出框提示“加载中”
       title: '加载中',
       icon: 'loading',
     });
@@ -55,8 +118,8 @@ Page({
       url: server,
       method: 'GET',
       data: {
-        'uid': uid,
-        'appid': appid
+        // // 'uid': uid,
+        // // 'appid': appid
       },
       header: {
         'Accept': 'application/json'
@@ -64,20 +127,21 @@ Page({
       success: function(res) {
         // console.log(res.data)
         wx.hideLoading();
-        var lng = res.data.location.lon
-        var lat = res.data.location.lat
+        wx.playBackgroundAudio({
+          dataUrl: res.data.music,
+          title: '',
+          coverImgUrl: ''
+        })
+
+        // 生成海报需要
+        wx.setStorage({
+          key: 'main',
+          data: res.data,
+        })
+
         that.setData({
-          mainInfo: res.data.mainInfo,
-          lng: lng, // 全局属性，用来取定位坐标
-          lat: lat,
-          markers: [{
-            iconPath: "/images/nav.png",
-            id: 0,
-            latitude: lat, // 页面初始化 options为页面跳转所带来的参数 
-            longitude: lng,
-            width: 50,
-            height: 50
-          }],
+          mainInfo: res.data,
+          music_url: res.data.music
         });
       }
     })
@@ -148,14 +212,9 @@ Page({
       }
     }
   },
-  callhe: function(event) {
+  call: function(event) {
     wx.makePhoneCall({
-      phoneNumber: this.data.mainInfo.he_tel
+      phoneNumber: event.currentTarget.dataset.phone
     })
   },
-  callshe: function(event) {
-    wx.makePhoneCall({
-      phoneNumber: this.data.mainInfo.she_tel
-    })
-  }
 })

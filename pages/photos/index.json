@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "婚纱相册"
+  "navigationBarTitleText": "我的相册",
+  "navigationStyle":"custom"
 }

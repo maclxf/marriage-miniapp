@@ -1,8 +1,54 @@
 /* pages/map/index.wxss */
-
+@import '/static/css/animate.wxss';
+@import '/static/css/animations.wxss';
 .container {
   min-height: 100vh;
   background-size: cover;
+  --primary-color: #FFFFCC;
+  --primary-bg-color: #CCFFFF;
+  --info-color: #FFCCCC;
+  --info-bg-color:#FFCCCC;
+}
+
+
+.datetime {
+  width: 620rpx;
+  padding: 15rpx;
+  margin: 20rpx 50rpx 20rpx 50rpx;
+  background-color: #FFCCCC;
+  color:#684c4b;
+  border-radius: 10px;
+
+}
+
+.box {
+  padding: 20rpx;
+  position: relative;
+}
+
+.we {
+  position: absolute;
+  bottom: 0;
+  left: 40rpx;
+  width: 520rpx;
+  height: 14rpx;
+}
+
+.date {
+
+  font-size: 30rpx;
+  line-height: 50rpx;
+  margin-top: 20rpx;
+}
+
+.name {
+  width: 400rpx;
+  margin: 0 auto;
+  min-height: 0;
+  overflow: hidden;
+  font-size: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
 }
 
 .t1 {
@@ -18,30 +64,24 @@
   margin: 0 auto;
   margin-bottom: 30rpx;
   margin-top: 20rpx;
-  border: 3rpx solid rgba(0, 0, 0, 0.3);
+  border: 3rpx solid #684c4b;
 }
 
 .tel {
   width: 500rpx;
   margin: 0 auto;
   min-height: 0;
-  overflow: hidden;
   text-align: center;
   font-size: 24rpx;
   color: #684c4b;
   line-height: 50rpx;
-  z-index: 99999;
   padding-bottom: 50rpx;
+  display: flex;
+  justify-content: center;
 }
 
-.tel_he {
+.tel-item {
   width: 200rpx;
-  float: left;
-}
-
-.tel_she {
-  width: 200rpx;
-  float: right;
 }
 
 .call {

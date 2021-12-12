@@ -1,6 +1,6 @@
 const app = getApp()
 var server = app.globalData.server + "/info";
-var appid = app.globalData.appid;
+//var appid = app.globalData.appid;
 Page({
 
   /**

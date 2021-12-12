@@ -1,82 +1,66 @@
-// pages/dirction.js
-let plugin = requirePlugin("myPlugin")
-const app = getApp();
-const lat = app.globalData.lat;
-const lon = app.globalData.lon;
-const endName = app.globalData.addressName;
-
-let routeInfo = {
-  // startLat: 39.90469, //起点纬度 选填
-  // startLng: 116.40717, //起点经度 选填
-  // startName: "我的位置", // 起点名称 选填
-  endLat: lat, // 终点纬度必传
-  endLng: lon, //终点经度 必传
-  endName: endName, //终点名称 必传
-  mode: "car" //算路方式 选填
-}
-
+// pages/navigation/index.js
 Page({
 
   /**
-   * Page initial data
+   * 页面的初始数据
    */
   data: {
-    routeInfo: routeInfo
-  },
-
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function(options) {
 
   },
 
   /**
-   * Lifecycle function--Called when page is initially rendered
+   * 生命周期函数--监听页面加载
    */
-  onReady: function() {
+  onLoad: function (options) {
 
   },
 
   /**
-   * Lifecycle function--Called when page show
+   * 生命周期函数--监听页面初次渲染完成
    */
-  onShow: function() {
+  onReady: function () {
 
   },
 
   /**
-   * Lifecycle function--Called when page hide
+   * 生命周期函数--监听页面显示
    */
-  onHide: function() {
+  onShow: function () {
 
   },
 
   /**
-   * Lifecycle function--Called when page unload
+   * 生命周期函数--监听页面隐藏
    */
-  onUnload: function() {
+  onHide: function () {
 
   },
 
   /**
-   * Page event handler function--Called when user drop down
+   * 生命周期函数--监听页面卸载
    */
-  onPullDownRefresh: function() {
+  onUnload: function () {
 
   },
 
   /**
-   * Called when page reach bottom
+   * 页面相关事件处理函数--监听用户下拉动作
    */
-  onReachBottom: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
-   * Called when user click on the top right corner to share
+   * 页面上拉触底事件的处理函数
    */
-  onShareAppMessage: function() {
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
 
   }
 })

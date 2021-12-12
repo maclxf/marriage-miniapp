@@ -2,8 +2,8 @@
 
 const app = getApp();
 var server = app.globalData.server + "/bless";
-var appid = app.globalData.appid;
-const uid = app.globalData.uid;
+//var appid = app.globalData.appid;
+//const uid = app.globalData.uid;
 Page({
 
   /**
@@ -34,7 +34,7 @@ Page({
 
 
 
-    wx.showLoading({ //期间为了显示效果可以添加一个过度的弹出框提示“加载中”  
+    wx.showLoading({ //期间为了显示效果可以添加一个过度的弹出框提示“加载中”
       title: '加载中',
       icon: 'loading',
     });
@@ -42,8 +42,8 @@ Page({
       url: server,
       method: 'GET',
       data: {
-        'uid': uid,
-        'appid': appid
+        // 'uid': uid,
+        // 'appid': appid
       },
       header: {
         'Accept': 'application/json'
@@ -115,8 +115,8 @@ Page({
       url: server,
       method: 'GET',
       data: {
-        'c': 'info',
-        'appid': appid
+        // 'c': 'info',
+        // 'appid': appid
       },
       header: {
         'Accept': 'application/json'
