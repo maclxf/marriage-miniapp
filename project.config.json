@@ -55,31 +55,7 @@
       "list": []
     },
     "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "地图",
-          "pathName": "pages/map/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "zhufu",
-          "pathName": "pages/bless/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "poster",
-          "pathName": "pages/poster/index",
-          "query": ""
-        },
-        {
-          "id": -1,
-          "name": "留言",
-          "pathName": "pages/chat/index"
-        }
-      ]
+      "list": []
     }
   }
 }
