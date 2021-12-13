@@ -12,8 +12,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
+    shareTitle: '邀请函',
+    cover:[],
     music_url: '',
+    music_title: '',
     isPlayingMusic: true
   },
 
@@ -42,20 +44,22 @@ Page({
         // console.log(res.data)
         wx.hideLoading();
         wx.playBackgroundAudio({
-          dataUrl: res.data.music,
-          title: '',
+          dataUrl: res.data.music.url,
+          title: res.data.music.title,
           coverImgUrl: ''
         })
 
         // 生成海报需要
-        wx.setStorage({
-          key: 'main',
-          data: res.data,
-        })
+        // wx.setStorage({
+        //   key: 'main',
+        //   data: res.data,
+        // })
 
         that.setData({
-          mainInfo: res.data,
-          music_url: res.data.music
+          shareTitle: res.data.shareTitle,
+          cover: res.data.cover,
+          music_url: res.data.music.url,
+          music_title: res.data.music.title,
         });
       }
     })
@@ -110,8 +114,7 @@ Page({
     var that = this;
     //console.log(that.data);
     return {
-      title: that.data.mainInfo.share,
-      imageUrl: that.data.mainInfo.thumb,
+      title: that.data.shareTitle,
       path: 'pages/index/index',
       success: function(res) {
         wx.showToast({
@@ -126,18 +129,7 @@ Page({
       }
     }
   },
-  callhe: function(event) {
-    wx.makePhoneCall({
-      phoneNumber: this.data.mainInfo.he_tel
-    })
-  },
-  callshe: function(event) {
-    wx.makePhoneCall({
-      phoneNumber: this.data.mainInfo.she_tel
-    })
-  },
   play: function(event) {
-    console.log(event)
     if (this.data.isPlayingMusic) {
       wx.pauseBackgroundAudio();
       this.setData({
@@ -146,7 +138,7 @@ Page({
     } else {
       wx.playBackgroundAudio({
         dataUrl: this.data.music_url,
-        title: '',
+        title: this.data.music_title,
         coverImgUrl: '',
         success: function(e) {
           console.log(e)

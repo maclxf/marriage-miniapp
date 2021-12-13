@@ -16,7 +16,7 @@
   width: 572rpx;
   height: 69rpx;
   position: fixed;
-  top: 30rpx;
+  top: 80rpx;
   left: 89rpx;
   z-index: 99;
 }
@@ -87,6 +87,26 @@
 .music_stop {
   width: 4em;
   display: none;
+}
+
+.swiper {
+  width: 750rpx;
+  height: 100vh;
+}
+
+.swiper swiper {
+  width: 750rpx;
+  height: 100vh;
+}
+
+.swiper swiper-item {
+  width: 750rpx;
+  height: 100vh;
+}
+
+.swiper image {
+  width: 750rpx;
+  height: 100vh;
 }
 
 

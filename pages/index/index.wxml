@@ -15,9 +15,12 @@
 </view>
 <view class="container">
   <image src='/images/inv.png' class='inv'></image>
-  <image src='{{mainInfo.cover}}' class='cover' mode='aspectFill'></image>
-  <view class="content">
-    <text>我叫黎桐语，我满一岁啦！</text>
+  <view class="swiper">
+    <swiper indicator-dots="false" indicator-active-color="#FFCCCC" indicator-color="#684c4b" autoplay circular vertical interval="5000">
+      <swiper-item wx:for="{{cover}}" wx:key="image" wx:if="{{item.image}}">
+        <image src="{{item.image}}" class='cover' mode='aspectFill'  />
+      </swiper-item>
+    </swiper>
   </view>
 
 </view>

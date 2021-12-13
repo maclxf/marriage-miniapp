@@ -1,7 +1,7 @@
 <!-- pages/map/index.wxml -->
 <view class="container">
   <view class="map" bindtap="markertap">
-    <map id="map" bindmarkertap="markertap" longitude="{{lng}}" enable-scroll="false" show-compass latitude="{{lat}}" scale="18" markers="{{markers}}"  show-location></map>
+    <map id="map" bindmarkertap="markertap" longitude="{{mainInfo.lon}}" enable-scroll="false" show-compass latitude="{{mainInfo.lat}}" scale="18" markers="{{markers}}"  show-location></map>
   </view>
   <view class='datetime' animation="{{animationData}}">
     <view class='box'>
@@ -9,10 +9,10 @@
         <text >邀请贴</text>
       </view>
       <view class="date ">
-        <view>谨定于 {{mainInfo.date}}</view>
+        <view>谨定于 <text style="font-weight:bolder">{{mainInfo.date}}</text></view>
         <view>农历: {{mainInfo.lunar}} </view>
-        <view bind:tap="markertap">地址: <text style="text-decoration:underline">{{mainInfo.address}} {{mainInfo.hotel}}</text></view>
-        <view>举办 {{mainInfo.content}} 恭请您的光临</view>
+        <view bind:tap="markertap">地址: <text style="text-decoration:underline;font-weight:bolder">{{mainInfo.address}} {{mainInfo.hotel}}</text></view>
+        <view>举办 <text style="font-weight:bolder">{{mainInfo.content}}</text> 恭请您的光临</view>
       </view>
     </view>
   </view>

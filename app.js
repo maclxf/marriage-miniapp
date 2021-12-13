@@ -27,16 +27,7 @@ App({
     wx.playBackgroundAudio()
   },
   globalData: {
-    userInfo: null,
-    // 下面填写酒店相关信息
-    lat: '29.533909',
-    lon: '106.514002',
-    name: '俏巴渝',
-    desc: '重庆市渝中区龙湖时代天街D馆L4',
-
-    uid: 1,
     //server: 'http://ci-wechat.top/invite',
     server: 'https://maclxf.top/invite',
-    music_url: ''
   }
 });
