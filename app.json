@@ -2,11 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/photos/index",
-    "pages/map/index",
-    "pages/bless/index",
-    "pages/chat/index",
-    "pages/poster/index",
-    "pages/navigation/index"
+    "pages/map/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
