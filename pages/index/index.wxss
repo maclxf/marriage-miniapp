@@ -18,8 +18,8 @@
   width: 128rpx;
   height: 128rpx;
   position: fixed;
-  top: 80rpx;
-  left: 89rpx;
+  top: 20rpx;
+  left: 20rpx;
   z-index: 99;
 }
 
@@ -28,7 +28,7 @@
   height: 128rpx!important;
   position: absolute;
   bottom: 20rpx;
-  right: 130rpx;
+  right: 20rpx;
   z-index: 99;
 }
 
