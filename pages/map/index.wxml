@@ -18,8 +18,8 @@
   </view>
   <view class="tel">
     <view class="tel-item" wx:for="{{mainInfo.contract}}">
-      <view class="call" bindtap="call" data-phone="{{item.tel}}">
-        <image src="/images/{{index}}.png" width="100%" />
+      <view class="call animated tada infinite call-{{index}}" bindtap="call" data-phone="{{item.tel}}">
+        <image src="/images/{{item.name}}.png" width="100%" />
       </view>
       {{item.content}}
     </view>

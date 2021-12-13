@@ -90,6 +90,23 @@
   display: block;
   margin: 0 auto;
 }
+.call-0 {
+  animate-delay: 1s;
+  animate-duration: 1s;
+}
+.call-1 {
+  animate-delay: 2s;
+  animate-duration: 1s;
+}
+.call-2 {
+  animate-delay: 3s;
+  animate-duration: 1s;
+}
+.call-3 {
+  animate-delay: 4s;
+  animate-duration: 1s;
+}
+
 
 .call image {
   width: 80rpx;
