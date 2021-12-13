@@ -30,3 +30,16 @@ page {
   margin-top: 10rpx;
   text-align: center;
 }
+
+.center {
+  text-align: center;
+}
+
+.title-1 {
+  font-size: 60rpx;
+  font-weight: bolder;
+}
+
+.white {
+  color: #fff;
+}

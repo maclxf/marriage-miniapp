@@ -15,20 +15,20 @@
 }
 
 .inv {
-  width: 572rpx;
-  height: 69rpx;
+  width: 128rpx;
+  height: 128rpx;
   position: fixed;
   top: 80rpx;
   left: 89rpx;
   z-index: 99;
 }
 
-.where {
-  width: 64rpx;
-  height: 64rpx;
-  position: fixed;
-  bottom: 90rpx;
-  right: 90rpx;
+.touch {
+  width: 128rpx!important;
+  height: 128rpx!important;
+  position: absolute;
+  bottom: 20rpx;
+  right: 130rpx;
   z-index: 99;
 }
 
