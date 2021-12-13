@@ -13,14 +13,13 @@
     </view>
   </view>
 </view>
-<view class="container">
-  <image src='/images/inv.png' class='inv'></image>
-  <view class="swiper">
+<view class="container" bind:tap="goMap">
+  <image src='/images/inv.png' class='inv animated wobble infinite' />
+  <view class="swiper" >
     <swiper indicator-dots="false" indicator-active-color="#FFCCCC" indicator-color="#684c4b" autoplay circular vertical interval="5000">
       <swiper-item wx:for="{{cover}}" wx:key="image" wx:if="{{item.image}}">
-        <image src="{{item.image}}" class='cover' mode='aspectFill'  />
+        <image src="{{item.image}}" class='cover' mode='aspectFill' />
       </swiper-item>
     </swiper>
   </view>
-
 </view>

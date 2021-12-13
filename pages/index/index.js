@@ -149,4 +149,10 @@ Page({
       })
     }
   },
+  goMap: function() {
+    wx.switchTab({
+      url: '/pages/map/index',
+    });
+
+  }
 })

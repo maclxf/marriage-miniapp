@@ -1,4 +1,6 @@
 /* pages/invitation/index.wxss */
+@import '../../static/css/animate.wxss';
+@import '../../static/css/animations.wxss';
 
 .container {
   min-height: 100vh;
@@ -18,6 +20,15 @@
   position: fixed;
   top: 80rpx;
   left: 89rpx;
+  z-index: 99;
+}
+
+.where {
+  width: 64rpx;
+  height: 64rpx;
+  position: fixed;
+  bottom: 90rpx;
+  right: 90rpx;
   z-index: 99;
 }
 
