@@ -14,22 +14,37 @@
   height: 100vh;
 }
 
-.inv {
-  width: 128rpx;
-  height: 128rpx;
-  position: fixed;
-  top: 20rpx;
-  left: 20rpx;
-  z-index: 99;
-}
-
-.touch {
+.icon-item {
   width: 128rpx!important;
   height: 128rpx!important;
   position: absolute;
+}
+
+.inv {
+  top: 60rpx;
+  left: 60rpx;
+}
+
+.horse {
+  top: 60rpx;
+  left: 300rpx;
+}
+.niaopian {
+  top: 60rpx;
+  right: 60rpx;
+}
+
+.touch {
   bottom: 20rpx;
-  right: 20rpx;
-  z-index: 99;
+  left: 60rpx;
+}
+.cloth {
+  bottom: 20rpx;
+  left: 300rpx;
+}
+.milk {
+  bottom: 20rpx;
+  right: 60rpx;
 }
 
 .background_music {

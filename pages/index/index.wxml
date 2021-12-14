@@ -14,19 +14,21 @@
   </view>
 </view>
 <view class="container" bind:tap="goMap">
-  <image src='/images/inv.png' class='inv animated rubberBand infinite' />
-  <!-- <view class='inv center title-1 white animated wobble infinite'>
-    邀请函
-  </view> -->
-
   <view class="swiper" >
     <swiper indicator-dots="false" indicator-active-color="#FFCCCC" indicator-color="#684c4b" autoplay circular vertical interval="5000">
       <swiper-item wx:for="{{cover}}" wx:key="image" wx:if="{{item.image}}">
-        <image src="{{item.image}}" class='cover' mode='aspectFill' />
+        <image src="{{item.image}}" class='cover' mode='{{index == 0 ? "aspectFit" : "aspectFill"}}' />
+        <block wx:if="{{index==0}}">
+          <image src='/images/inv.png' class='inv icon-item animated rubberBand infinite' />
+          <image src='/images/horse.png' class='horse icon-item animated wobble infinite' />
+          <image src='/images/niaopian.png' class='niaopian icon-item animated jello infinite' />
 
+          <image src='/images/nice.png' class='touch icon-item animated swing infinite' />
+          <image src='/images/cloth.png' class='cloth icon-item animated tada infinite' />
+          <image src='/images/milk.png' class='milk icon-item animated bounce infinite' />
+        </block>
       </swiper-item>
     </swiper>
   </view>
-  <image src='/images/nice.png' class='touch animated bounce infinite' />
 
 </view>
