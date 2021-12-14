@@ -13,6 +13,8 @@ Page({
    */
   data: {
     shareTitle: '邀请函',
+    thumb: '',
+    timeLineThumb:'',
     cover:[],
     music_url: '',
     music_title: '',
@@ -57,6 +59,8 @@ Page({
 
         that.setData({
           shareTitle: res.data.shareTitle,
+          thumb: res.data.thumb,
+          timeLineThumb: res.data.timeLineThumb,
           cover: res.data.cover,
           music_url: res.data.music.url,
           music_title: res.data.music.title,
@@ -115,6 +119,7 @@ Page({
     //console.log(that.data);
     return {
       title: that.data.shareTitle,
+      imageUrl: that.data.thumb,
       path: 'pages/index/index',
       success: function(res) {
         wx.showToast({
@@ -127,6 +132,12 @@ Page({
           title: '分享取消',
         })
       }
+    }
+  },
+  onShareTimeline: function() {
+    return {
+      title: this.data.shareTitle,
+      imageUrl: this.data.timeLineThumb,
     }
   },
   play: function(event) {
